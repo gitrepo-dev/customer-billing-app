@@ -48,7 +48,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
       status: 'unpaid',
       createdAt: new Date().toISOString(),
     };
-  
+
     await invoiceRepository.save(invoice);
     reset({
       date: today,
@@ -64,7 +64,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
   const { subtotal, totalTax, grandTotal } = watchedItems.reduce(
     (acc, item) => {
       const price = Number(item?.price) || 0;
-      const taxRate = Number(item?.taxRate) || 0; 
+      const taxRate = Number(item?.taxRate) || 0;
 
       const itemTax = price * (taxRate / 100);
 
@@ -81,6 +81,8 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
   const invoiceDate = watch('date');
 
 
+  console.log(customers, "customers")
+
   return (
     <>
       <span className="font-bold text-gray-800 text-md mb-4 inline-block">Create New Invoice</span>
@@ -91,7 +93,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
             <label className="block text-xs  capitlize text-gray-600 mb-1">Customer *</label>
 
             <select {...register('customer')} className="border border-gray-300 rounded px-3 py-1.5 text-sm w-full">
-              {customers.map(({ personal, id }: CustomerFormData & { id: string }) => <option key={id} value={`${personal?.name}${' '}${personal?.email}`}>{personal?.name}{' '}({personal?.email})</option>)}
+              {customers.map((cust:any) => <option key={cust?.id} value={`${cust?.name}${' '}${cust?.email}`}>{cust?.name}{' '}({cust?.email})</option>)}
             </select>
 
           </div>
@@ -170,9 +172,9 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
                         <p className="text-xs text-red-500">{errors.items[idx]?.taxRate?.message}</p>
                       )}
                     </td>
-                   
-                      {fields.length > 1 && (
-                         <td className="p-2 text-center">
+
+                    {fields.length > 1 && (
+                      <td className="p-2 text-center">
                         <button
                           type="button"
                           onClick={() => remove(idx)}
@@ -180,9 +182,9 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
                         >
                           &times;
                         </button>
-                        </td>
-                      )}
-                    
+                      </td>
+                    )}
+
                   </tr>
                 );
               })}
