@@ -93,7 +93,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
             <label className="block text-xs  capitlize text-gray-600 mb-1">Customer *</label>
 
             <select {...register('customer')} className="border border-gray-300 rounded px-3 py-1.5 text-sm w-full">
-              {customers.map((cust:any) => <option key={cust?.personal?.id} value={`${cust?.personal?.name}${' '}${cust?.personal?.email}`}>{cust?.personal?.name}{' '}({cust?.personal?.email})</option>)}
+              {customers.map((cust:any) => <option key={cust?.id} value={`${cust?.personal?.name}${' '}${cust?.personal?.email}`}>{cust?.personal?.name}{' '}({cust?.personal?.email})</option>)}
             </select>
 
           </div>
