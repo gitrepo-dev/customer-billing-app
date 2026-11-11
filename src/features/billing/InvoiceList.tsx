@@ -47,7 +47,7 @@ export const InvoiceList: React.FC<Props> = ({ invoices, onRefresh }) => {
               {invoices.map((inv) => (
                 <tr key={inv.id} className="hover:bg-gray-50/50">
                   <td className="px-3 py-2.5 font-mono text-xs">{inv.id.slice(0, 7)}</td>
-                  <td className="px-3 py-2.5 capitalize">{inv?.customer?.split(' ')?.[0] || ''}</td> 
+                  <td className="px-3 py-2.5 capitalize">{inv?.customer?.split(' ')?.slice(0, -1).join(' ') || ''}</td> 
                   <td className="px-3 py-2.5">{inv.date}</td>                  
                   <td className="px-3 py-2.5 text-right font-medium text-gray-900">
                     ${inv.total.toFixed(2)}
@@ -66,7 +66,7 @@ export const InvoiceList: React.FC<Props> = ({ invoices, onRefresh }) => {
                   <td className="px-3 py-2.5 text-right">
                     <button
                       onClick={() => handleToggle(inv.id)}
-                      className="text-xs text-blue-600 hover:underline"
+                      className="text-xs text-blue-600 hover:underline cursor-pointer"
                     >
                       Mark as {inv.status === 'paid' ? 'Unpaid' : 'Paid'}
                     </button>

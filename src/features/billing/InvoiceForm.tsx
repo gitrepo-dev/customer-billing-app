@@ -128,7 +128,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
           <table className="w-full text-left text-sm">
             <thead className="text-xs text-gray-700 capitlize">
               <tr>
-                <th className="px-3 pb-2">Item Name *</th>
+                <th className="px-3 pb-2 min-w-36">Item Name *</th>
                 <th className="px-3 pb-2 w-46">Price *</th>
                 <th className="px-3 pb-2 w-40 text-right">Tax Rate (%) *</th>
                 {watchedItems?.length > 1 ? <th className="px-3 pb-2 w-12 text-center"></th> : null}
@@ -145,7 +145,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
                         className="w-full border rounded px-2 py-1 text-sm"
                       />
                       {errors.items?.[idx]?.itemName && (
-                        <p className="text-xs text-red-500">{errors.items[idx]?.itemName?.message}</p>
+                        <p className="text-xs text-red-500 absolute">{errors.items[idx]?.itemName?.message}</p>
                       )}
                     </td>
                     <td className="p-2">
@@ -157,7 +157,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
                         className="w-full border rounded px-2 py-1 text-sm text-right"
                       />
                       {errors.items?.[idx]?.price && (
-                        <p className="text-xs text-red-500">{errors.items[idx]?.price?.message}</p>
+                        <p className="text-xs text-red-500 absolute">{errors.items[idx]?.price?.message}</p>
                       )}
                     </td>
                     <td className="p-2">
@@ -169,7 +169,7 @@ export const InvoiceForm: React.FC<Props> = ({ customerId, onInvoiceCreated, cus
                         {percentages.map((percentage: number) => <option key={percentage} value={percentage}>{percentage} %</option>)}
                       </select>
                       {errors.items?.[idx]?.taxRate && (
-                        <p className="text-xs text-red-500">{errors.items[idx]?.taxRate?.message}</p>
+                        <p className="text-xs text-red-500 absolute">{errors.items[idx]?.taxRate?.message}</p>
                       )}
                     </td>
 

@@ -27,7 +27,7 @@ export const addressBlockSchema = z.object({
   street: z.string().trim().min(2, 'Street is required'),
   city: z.string().trim().min(2, 'City is required'),
   state: z.string().trim().min(2, 'State is required'),
-  zipCode: z.string().trim().min(5, 'Postal code is required'),
+  zipCode: z.string().trim().min(5, 'Postal code is required').max(5, 'Postal code should be 5 digit'),
 });
 
 export const addressInfoSchema = z.object({
